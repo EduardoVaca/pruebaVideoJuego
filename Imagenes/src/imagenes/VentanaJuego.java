@@ -19,6 +19,7 @@ public class VentanaJuego extends JFrame  {
     private long tiempoInicial = System.currentTimeMillis();
     private long tiempoActual = tiempoInicial;
     private long periodoRepintado = 32;
+    Personaje homero = new Personaje("homer.png");
     
     public static VentanaJuego instancia = null;
     //Es estatico para que no sea necesario crear un objeto para acceder a esta instancia 
@@ -28,7 +29,7 @@ public class VentanaJuego extends JFrame  {
         {
             instancia = new VentanaJuego();
             instancia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            instancia.setBounds(100, 100, 800, 600);  
+            instancia.setBounds(100, 100, 800, 640);  
             instancia.setVisible(true);
             instancia.createBufferStrategy(2);
 
@@ -50,8 +51,8 @@ public class VentanaJuego extends JFrame  {
             {
                 Graphics segundoBuffer = buffer.getDrawGraphics();
                 //mostrar imagen de la carpeta
-                segundoBuffer.drawImage(Imagenes.Singleton().imagen("pokemon.gif"), 100, 100, null);
-                segundoBuffer.drawImage(Imagenes.Singleton().imagen("minions.png"), 0, 0, null);
+                segundoBuffer.drawImage(Imagenes.Singleton().imagen("city.jpg"), 0, 0, null);
+                segundoBuffer.drawImage(Imagenes.Singleton().imagen(homero.getNombre()), 100, 100, null);
                 buffer.show();
             }
             
