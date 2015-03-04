@@ -7,6 +7,8 @@
 package imagenes;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
@@ -14,7 +16,7 @@ import javax.swing.JFrame;
  *
  * @author Eduardo
  */
-public class VentanaJuego extends JFrame  {
+public class VentanaJuego extends JFrame  implements KeyListener{
     
     private long tiempoInicial = System.currentTimeMillis();
     private long tiempoActual = tiempoInicial;
@@ -25,6 +27,7 @@ public class VentanaJuego extends JFrame  {
     //Es estatico para que no sea necesario crear un objeto para acceder a esta instancia 
     public static VentanaJuego Singleton()
     {
+
         if(instancia == null)
         {
             instancia = new VentanaJuego();
@@ -32,6 +35,7 @@ public class VentanaJuego extends JFrame  {
             instancia.setBounds(100, 100, 800, 640);  
             instancia.setVisible(true);
             instancia.createBufferStrategy(2);
+            instancia.addKeyListener(instancia);
 
             
         }
@@ -52,11 +56,30 @@ public class VentanaJuego extends JFrame  {
                 Graphics segundoBuffer = buffer.getDrawGraphics();
                 //mostrar imagen de la carpeta
                 segundoBuffer.drawImage(Imagenes.Singleton().imagen("city.jpg"), 0, 0, null);
-                segundoBuffer.drawImage(Imagenes.Singleton().imagen(homero.getNombre()), 100, 100, null);
+                segundoBuffer.drawImage(Imagenes.Singleton().imagen(homero.getNombre()), homero.getPosX(), homero.getPosY(), null);
                 buffer.show();
             }
             
         }
+        
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()){
+            case KeyEvent.VK_RIGHT: homero.corre();
+                                    break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        homero.setNombre("homer.png");
         
     }
 
