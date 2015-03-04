@@ -74,6 +74,8 @@ public class VentanaJuego extends JFrame  implements KeyListener{
         switch (e.getKeyCode()){
             case KeyEvent.VK_RIGHT: homero.corre();
                                     break;
+            case KeyEvent.VK_UP: homero.salta();
+                                    break;
         }
     }
 
