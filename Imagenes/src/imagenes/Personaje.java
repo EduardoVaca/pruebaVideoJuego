@@ -33,6 +33,10 @@ public class Personaje {
         posX += 2;
     }
     
+    public void pisa(){
+        nombre = "homerPisa.gif";
+    }
+    
 
     public String getNombre() {
         return nombre;

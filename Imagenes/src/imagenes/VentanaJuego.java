@@ -76,6 +76,8 @@ public class VentanaJuego extends JFrame  implements KeyListener{
                                     break;
             case KeyEvent.VK_UP: homero.salta();
                                     break;
+            case KeyEvent.VK_DOWN: homero.pisa();
+                                    break;
         }
     }
 
