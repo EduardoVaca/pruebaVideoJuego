@@ -24,7 +24,7 @@ public class Personaje {
     
     public void corre(){
         nombre = "homerCorre.gif";
-        System.out.println("PosX" + posX);
+        //System.out.println("PosX" + posX);
         posX += 3;
     }
     

@@ -22,6 +22,7 @@ public class VentanaJuego extends JFrame  implements KeyListener{
     private long tiempoActual = tiempoInicial;
     private long periodoRepintado = 32;
     Personaje homero = new Personaje("homer.png");
+    Cronometro repintado = new Cronometro(1);
     
     public static VentanaJuego instancia = null;
     //Es estatico para que no sea necesario crear un objeto para acceder a esta instancia 
@@ -45,9 +46,7 @@ public class VentanaJuego extends JFrame  implements KeyListener{
     @Override
     public void paint(Graphics g)
     {
-        tiempoActual = System.currentTimeMillis();
-        if(tiempoActual - tiempoInicial >= periodoRepintado){
-            tiempoInicial = tiempoActual;
+        if(repintado.esTiempo()){
             //Se recupera el buffer
             //Se deja que pase un vez al menos para empezar a cambiar el dibujo
             BufferStrategy buffer = Singleton().getBufferStrategy();
