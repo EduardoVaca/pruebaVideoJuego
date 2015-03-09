@@ -21,7 +21,7 @@ public class VentanaJuego extends JFrame  implements KeyListener{
     private long tiempoInicial = System.currentTimeMillis();
     private long tiempoActual = tiempoInicial;
     private long periodoRepintado = 32;
-    Personaje homero = new Personaje("homer.png");
+    Personaje homero = new Personaje("homer.png", 128, 128);
     Cronometro repintado = new Cronometro(1);
     
     public static VentanaJuego instancia = null;
@@ -56,6 +56,7 @@ public class VentanaJuego extends JFrame  implements KeyListener{
                 //mostrar imagen de la carpeta
                 segundoBuffer.drawImage(Imagenes.Singleton().imagen("city.jpg"), 0, 0, null);
                 segundoBuffer.drawImage(Imagenes.Singleton().imagen(homero.getNombre()), homero.getPosX(), homero.getPosY(), null);
+                homero.getCol().draw(segundoBuffer);
                 buffer.show();
             }
             

@@ -6,6 +6,8 @@
 
 package imagenes;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author Eduardo
@@ -14,23 +16,35 @@ public class Personaje {
     
     private int posX;
     private int posY;
+    private int ancho;
+    private int alto;
     private String nombre;
+    private Colisionador col;
     
-    public Personaje(String nombre){
+    public Personaje(String nombre, int alto, int ancho){
         this.nombre = nombre;
-        posX = 10;
+        this.ancho = ancho;
+        this.alto = alto;
+        posX = 250;
         posY = 420;
+        col = new Colisionador(posX, posY, alto, ancho);
     }
     
     public void corre(){
         nombre = "homerCorre.gif";
-        //System.out.println("PosX" + posX);
+        
         posX += 3;
+        col.setxInferior(posX + ancho);
+        col.setxSuperior(posX);
+        System.out.println("PosXSUPCOL" + col.getxSuperior());
+        System.out.println("PosXSINF" + col.getxInferior());
     }
     
     public void salta(){
         nombre = "homerSalta2.gif";
         posX += 2;
+        col.setxSuperior(posX);
+        col.setxInferior(posX + ancho);
     }
     
     public void pisa(){
@@ -50,6 +64,11 @@ public class Personaje {
         return posY;
     }
 
+    public Colisionador getCol() {
+        return col;
+    }
+
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
