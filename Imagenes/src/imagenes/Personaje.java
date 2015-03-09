@@ -25,7 +25,7 @@ public class Personaje {
         this.nombre = nombre;
         this.ancho = ancho;
         this.alto = alto;
-        posX = 250;
+        posX = 150;
         posY = 420;
         col = new Colisionador(posX, posY, alto, ancho);
     }
@@ -36,15 +36,19 @@ public class Personaje {
         posX += 3;
         col.setxInferior(posX + ancho);
         col.setxSuperior(posX);
-        System.out.println("PosXSUPCOL" + col.getxSuperior());
-        System.out.println("PosXSINF" + col.getxInferior());
+        
     }
     
     public void salta(){
         nombre = "homerSalta2.gif";
         posX += 2;
+        posY -=2;
         col.setxSuperior(posX);
         col.setxInferior(posX + ancho);
+        col.setySuperior(posY);
+        col.setyInferior(posY + alto);
+        System.out.println("PosYsuperior: " + col.getySuperior());
+        System.out.println("PosYinferior " + col.getyInferior());
     }
     
     public void pisa(){

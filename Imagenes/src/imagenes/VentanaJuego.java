@@ -23,6 +23,7 @@ public class VentanaJuego extends JFrame  implements KeyListener{
     private long periodoRepintado = 32;
     Personaje homero = new Personaje("homer.png", 128, 128);
     Cronometro repintado = new Cronometro(1);
+    Obstaculo item = new Obstaculo("dog.png", 128, 128);
     
     public static VentanaJuego instancia = null;
     //Es estatico para que no sea necesario crear un objeto para acceder a esta instancia 
@@ -55,8 +56,15 @@ public class VentanaJuego extends JFrame  implements KeyListener{
                 Graphics segundoBuffer = buffer.getDrawGraphics();
                 //mostrar imagen de la carpeta
                 segundoBuffer.drawImage(Imagenes.Singleton().imagen("city.jpg"), 0, 0, null);
+                if(verificaColision(homero, item)){
+                    homero.setNombre("homerSufre.gif");
+                    //System.out.print("CHOCOOOOO");
+                }
                 segundoBuffer.drawImage(Imagenes.Singleton().imagen(homero.getNombre()), homero.getPosX(), homero.getPosY(), null);
+                segundoBuffer.drawImage(Imagenes.Singleton().imagen(item.getNombre()), item.getPosX(), item.getPosY(), null);
+                item.getCol().draw(segundoBuffer);
                 homero.getCol().draw(segundoBuffer);
+                item.avanza();
                 buffer.show();
             }
             
@@ -85,6 +93,15 @@ public class VentanaJuego extends JFrame  implements KeyListener{
     public void keyReleased(KeyEvent e) {
         homero.setNombre("homer.png");
         
+    }
+    
+    public boolean verificaColision(Personaje p, Obstaculo o){
+        if(p.getCol().getxInferior() >= o.getCol().getxSuperior() && (p.getCol().getyInferior() >= o.getCol().getySuperior() &&
+                                                                        p.getCol().getyInferior() <= o.getCol().getyInferior())){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
